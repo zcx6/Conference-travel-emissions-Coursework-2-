@@ -1,7 +1,23 @@
 from typing import Dict, List, Tuple
 
 class City:
-    ...
+    def __init__(self, name, country, citizen_numbers, latitude, longitude):
+
+        self.name=name
+        self.country=country
+        self.citizen_numbers=citizen_numbers
+        self.latitude=latitude
+        self.longitude=longitude
+
+    def numberofcitizens(self):
+        pass
+
+
+    # def restrictedforcoordinates(self):
+    #     for latitudes in self.latitude:
+    #         if -90 < latitudes < 90:
+
+
     def distance_to(self, other: 'City') -> float:
         raise NotImplementedError
 
@@ -9,13 +25,18 @@ class City:
         raise NotImplementedError
 
 class CityCollection:
-    ...
+
+    def __init__(self, cities: 'City'):
+        self.cities = cities
 
     def countries(self) -> List[str]:
         raise NotImplementedError
 
     def total_attendees(self) -> int:
-        raise NotImplementedError
+        #for city in self.cities:
+        pass
+
+
 
     def total_distance_travel_to(self, city: City) -> float:
         raise NotImplementedError
