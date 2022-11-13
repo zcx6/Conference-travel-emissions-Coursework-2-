@@ -55,53 +55,102 @@ class City:
             return 300*d*people
 
 
-
-
 class CityCollection:
 
     def __init__(self, cities: 'City'):
         self.cities = cities
 
     def countries(self) -> List[str]:
-
         countries =[]
+        count = 0
         for city in self.cities:
             countries.append(city.country)
-        uniquecountry = list(set(countries))
-        uniquecountry.sort(key=countries.index)
-        return(uniquecountry)
+        unique_country = list(set(countries))
+        unique_country.sort(key=countries.index)
+        return(unique_country)
 
     def total_attendees(self) -> int:
-        attendees =[]
+        attendees = []
         for N in self.cities:
             attendees.append(N.citizen_numbers)
-
         total = sum(attendees)
         return total
 
-
-
-
     def total_distance_travel_to(self, city: City) -> float:
-        raise NotImplementedError
+        tot_distance = 0
+        for i in self.cities:
+            tot_distance += i.distance_to(city) * i.citizen_numbers
+        return tot_distance
 
     def travel_by_country(self, city: City) -> Dict[str, float]:
-        raise NotImplementedError
+        dict = {}
+        country = self.countries()
+        for c in country:
+            country_contain_cities = CityCollection([city for city in self.cities if city.country == c])
+            dict[c] = country_contain_cities.total_distance_travel_to(city)
+        return dict
 
     def total_co2(self, city: City) -> float:
-        raise NotImplementedError
+        total = 0
+        for i in self.cities:
+            total += i.co2_to(city)
+        return total
 
     def co2_by_country(self, city: City) -> Dict[str, float]:
-        raise NotImplementedError
+        dict = {}
+        country = self.countries()
+        for c in country:
+            country_contain_cities = CityCollection([city for city in self.cities if city.country == c])
+            dict[c] = country_contain_cities.total_co2(city)
+        return dict
 
     def summary(self, city: City):
-        raise NotImplementedError
+        ZZZ = self.total_attendees() - city.citizen_numbers
+        count = 0
+        for i in self.cities:
+            count += 1
+        print('Host city:', city.name, '(', city.country, ')')
+        print('Total CO2:', str(round((self.total_co2(city))/1000)), 'tonnes')
+        print('Total attendees travelling to Zurich from', count-1, 'different cities:', ZZZ)
 
     def sorted_by_emissions(self) -> List[Tuple[str, float]]:
-        raise NotImplementedError
+        co2_emissions = []
+        for c in self.cities:
+            co2_emissions.append((c.name, self.total_co2(c)))
+        sorted_co2_emissions = sorted(co2_emissions, key=lambda x: x[1])
+        return sorted_co2_emissions
 
-    def plot_top_emitters(self, city: City, n: int, save: bool):
-        raise NotImplementedError
+    def plot_top_emitters(self, city: City, n=10, save=False):
+        a = self.co2_by_country(city)
+        b = dict(sorted(a.items(), key=lambda x: x[1], reverse=True))
+        x = list(b.keys())
+        y = list(b.values())
+
+        import matplotlib.pyplot as plt
+
+        countries = x[0:n]
+        values = y[0:n]
+        countries.append('Everywhere else')
+        other_country = sum(y[n:-1]) + y[-1]
+        values.append(other_country)
+
+        fig = plt.figure(figsize=(12, 8))
+        plt.bar(countries, values)
+        plt.ylabel('Total emissions(kg CO2)')
+        plt.title('Total emission from each country')
+        plt.xticks(rotation=-15)
+        plt.tick_params(axis='x', labelsize=8)
+
+        if save==True:
+            plt.savefig('{}.png'.format(city.name.lower().replace(' ', '_')))
+        else:
+            plt.show()
+
+
+
+
+
+
 
 
 
