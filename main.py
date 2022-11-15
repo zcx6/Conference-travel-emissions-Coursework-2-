@@ -13,28 +13,28 @@ if __name__ == '__main__':
     zrh_to_sfo_co2 = zurich.co2_to(san_francisco)
     print(zrh_to_sfo_co2)
 
-    a = city_collection.countries()
-    print(a)
-
-    b = city_collection.total_attendees()
-    print(b)
-
-    c = city_collection.total_distance_travel_to(san_francisco)
-    print(c)
-
-    d = city_collection.travel_by_country(zurich)
-    print(d)
-
-    e = city_collection.total_co2(zurich)
-    print(e)
-
-    f = city_collection.co2_by_country(zurich)
-    print(f)
-
-    city_collection.summary(zurich)
-
-    h = city_collection.sorted_by_emissions()
-    print(h)
-
-    city_collection.plot_top_emitters(zurich, 10, False)
+    # a = city_collection.countries()
+    # print(a)
+    #
+    # b = city_collection.total_attendees()
+    # print(b)
+    #
+    # c = city_collection.total_distance_travel_to(san_francisco)
+    # print(c)
+    #
+    # d = city_collection.travel_by_country(zurich)
+    # print(d)
+    #
+    # e = city_collection.total_co2(zurich)
+    # print(e)
+    #
+    # f = city_collection.co2_by_country(zurich)
+    # print(f)
+    #
+    # city_collection.summary(zurich)
+    #
+    # h = city_collection.sorted_by_emissions()
+    # print(h)
+    #
+    # city_collection.plot_top_emitters(zurich, 10, False)
 
