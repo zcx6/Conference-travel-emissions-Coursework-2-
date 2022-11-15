@@ -5,20 +5,20 @@ class City:
     def __init__(self, name, country, citizen_numbers, latitude, longitude):
 
         if name == '' or not isinstance(name, str):
-            raise ValueError('name is not string')
+            raise TypeError('name is not string')
         if country == '' or not isinstance(country, str):
-            raise ValueError('country is not string')
+            raise TypeError('country is not string')
         if not isinstance(citizen_numbers, int):
-            raise ValueError('citizen_numbers is not integer ')
+            raise TypeError('citizen_numbers is not integer ')
         if not int(citizen_numbers) > 0:
             raise ValueError('citizen_numbers is not positive')
 
         if not isinstance(latitude, float):
-            raise ValueError('latitude is not decimal numbers')
+            raise TypeError('latitude is not decimal numbers')
         if not (-90 < float(latitude) < 90):
             raise ValueError('latitude is not restricted to the -90 to 90')
         if not isinstance(longitude, float):
-            raise ValueError('longitude is not decimal numbers')
+            raise TypeError('longitude is not decimal numbers')
         if not (-180 < float(longitude) < 180):
             raise ValueError('longitude is not restricted to the -180 to 180')
 
@@ -131,7 +131,7 @@ class CityCollection:
         countries = x[0:n]
         values = y[0:n]
         countries.append('Everywhere else')
-        other_country = sum(y[n:-1]) + y[-1]
+        other_country = sum(y[n:])
         values.append(other_country)
 
         fig = plt.figure(figsize=(12, 8))
