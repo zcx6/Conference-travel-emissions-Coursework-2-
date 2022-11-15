@@ -4,7 +4,7 @@ import csv
 
 
 def read_attendees_file(filepath: Path) -> CityCollection:
-    with open('attendee_locations.csv') as f:
+    with open(filepath) as f:
         f_csv = csv.reader(f)
         headers = next(f_csv)
 
@@ -15,6 +15,3 @@ def read_attendees_file(filepath: Path) -> CityCollection:
         city_collection = CityCollection(list_of_city)
         return city_collection
 
-
-# N = City('North Pole', 'Sweeden', 52, 90.0, 8.33)
-# print(N.latitude)
