@@ -22,8 +22,8 @@ if __name__ == '__main__':
     # c = city_collection.total_distance_travel_to(san_francisco)
     # print(c)
     #
-    d = city_collection.travel_by_country(zurich)
-    print(d)
+    # d = city_collection.travel_by_country(zurich)
+    # print(d)
     #
     # e = city_collection.total_co2(zurich)
     # print(e)
@@ -33,24 +33,26 @@ if __name__ == '__main__':
     #
     # city_collection.summary(zurich)
     #
-    h = city_collection.sorted_by_emissions()
-    print(h)
+    # h = city_collection.sorted_by_emissions()
+    # print(h)
     #
     # city_collection.plot_top_emitters(zurich, 10, False)
 
-    # milan = City('Milan', 'Italy', 13, 45.4668, 9.1905)
-    # santander = City('Santander', 'Spain', 2, 43.462041, -3.809972)
-    # mil_to_san = milan.distance_to(santander)
-    # print(mil_to_san)
-    # mil_to_san_co2 = milan.co2_to(santander)
-    # print(mil_to_san_co2)
-    #
-    #
+
     # kanazawa = City('Kanazawa', 'Japan', 10, 36.56, 136.66)
     # seoul = City('Seoul', 'South Korea', 234, 37.57, 126.98)
     # kan_to_seo = kanazawa.distance_to(seoul)
     # print(kan_to_seo)
     # kan_to_seo_co2 = kanazawa.co2_to(seoul)
     # print(kan_to_seo_co2)
-    #
-    #
+
+    kanazawa = City('Kanazawa', 'Japan', 10, 36.56, 136.66)
+    seoul = City('Seoul', 'South Korea', 234, 37.57, 126.98)
+    san_francisco = City('San Francisco', 'United States', 71, 37.77, -122.41)
+    tokai = City('Tokai', 'Japan', 1, 35.04, 136.91)
+    city_collection = CityCollection([kanazawa, seoul, san_francisco, tokai])
+    sorted_by_emission = city_collection.sorted_by_emissions()
+    print(sorted_by_emission)
+
+
+
