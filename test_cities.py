@@ -12,8 +12,9 @@ class TestCity:
             zurich = City('Zurich', 111, 52, 47.22, 8.33)
 
     def test_citizen_numbers_is_not_integer(self):
-        with raises(TypeError) as exception:
-            zurich = City('Zurich', 'Switzerland', 52.8, 47.22, 8.33)
+        #with raises(TypeError) as exception:
+        north_pole =City('North Pole', 'Sweeden', 52, 90.0, 8.33)
+            #zurich = City('Zurich', 'Switzerland', 52.8, 47.22, 8.33)
 
     def test_citizen_numbers_is_not_positive(self):
         with raises(ValueError) as exception:
@@ -44,17 +45,35 @@ class TestCity:
         assert zrh_to_sfo == 9374.70692719961
 
 
-    def test_co2_to(self):
+    def test_co2_to_fly_long_haul(self):
         zurich = City('Zurich', 'Switzerland', 52, 47.22, 8.33)
         san_francisco = City('San Francisco', 'United States', 71, 37.77, -122.41)
         zrh_to_sfo_co2 = zurich.co2_to(san_francisco)
         assert zrh_to_sfo_co2 == 146245428.0643139
 
+    def test_co2_to_fly_short_haul(self):
+        milan = City('Milan', 'Italy', 13, 45.4668, 9.1905)
+        santander = City('Santander', 'Spain', 2, 43.462041, -3.809972)
+        mil_to_san_co2 = milan.co2_to(santander)
+        assert mil_to_san_co2 == 3426275.3967686924
+
+    def test_co2_to_public_transport(self):
+        kanazawa = City('Kanazawa', 'Japan', 10, 36.56, 136.66)
+        seoul = City('Seoul', 'South Korea', 234, 37.57, 126.98)
+        kan_to_seo_co2 = kanazawa.co2_to(seoul)
+        assert kan_to_seo_co2 == 1731604.6249346354
+
+
+class TestCityCollection:
+    def test_countires(self):
+        kanazawa = City('Kanazawa', 'Japan', 10, 36.56, 136.66)
+        seoul = City('Seoul', 'South Korea', 234, 37.57, 126.98)
+        zurich = City('Zurich', 'Switzerland', 52, 47.22, 8.33)
+        san_francisco = City('San Francisco', 'United States', 71, 37.77, -122.41)
+        tokai = City('Tokai', 'Japan', 1, 35.04, 136.91)
 
 
 
-# class TestCityCollection:
-#     def test_
 
 
 

@@ -15,11 +15,11 @@ class City:
 
         if not isinstance(latitude, float):
             raise TypeError('latitude is not decimal numbers')
-        if not (-90 < float(latitude) < 90):
+        if not (-90 <= float(latitude) <= 90):
             raise ValueError('latitude is not restricted to the -90 to 90')
         if not isinstance(longitude, float):
             raise TypeError('longitude is not decimal numbers')
-        if not (-180 < float(longitude) < 180):
+        if not (-180 <= float(longitude) <= 180):
             raise ValueError('longitude is not restricted to the -180 to 180')
 
         self.name = name

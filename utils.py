@@ -16,3 +16,5 @@ def read_attendees_file(filepath: Path) -> CityCollection:
         return city_collection
 
 
+# N = City('North Pole', 'Sweeden', 52, 90.0, 8.33)
+# print(N.latitude)
