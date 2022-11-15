@@ -10,7 +10,7 @@ class City:
             raise TypeError('country is not string')
         if not isinstance(citizen_numbers, int):
             raise TypeError('citizen_numbers is not integer ')
-        if not int(citizen_numbers) > 0:
+        if not int(citizen_numbers) >= 0:
             raise ValueError('citizen_numbers is not positive')
 
         if not isinstance(latitude, float):
@@ -109,9 +109,9 @@ class CityCollection:
         count = 0
         for i in self.cities:
             count += 1
-        print('Host city:', city.name, '(', city.country, ')')
-        print('Total CO2:', str(round((self.total_co2(city))/1000)), 'tonnes')
-        print('Total attendees travelling to Zurich from', count-1, 'different cities:', ZZZ)
+        print(f'Host city: {city.name} ({city.country})')
+        print(f'Total CO2: {str(round((self.total_co2(city))/1000))} tonnes')
+        print(f'Total attendees travelling to {city.name} from {count-1} different cities: {ZZZ}')
 
     def sorted_by_emissions(self) -> List[Tuple[str, float]]:
         co2_emissions = []
@@ -127,7 +127,6 @@ class CityCollection:
         y = list(b.values())
 
         import matplotlib.pyplot as plt
-
         countries = x[0:n]
         values = y[0:n]
         countries.append('Everywhere else')
