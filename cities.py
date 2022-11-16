@@ -9,7 +9,7 @@ class City:
                 if type(n) == int or type(n) == float:
                     return True
             except Exception as e:
-                raise ValueError('The latitude or longitude is not decimal number')
+                raise TypeError('The latitude or longitude is not decimal number')
 
         if name == '' or not isinstance(name, str):
             raise TypeError('name is not string')
@@ -55,7 +55,7 @@ class City:
         people = self.citizen_numbers
         if d <= 1000:
             return 200*d*people
-        elif 1000 < d < 8000:
+        elif 1000 < d <= 8000:
             return 250*d*people
         else:
             return 300*d*people
@@ -68,7 +68,6 @@ class CityCollection:
 
     def countries(self) -> List[str]:
         countries =[]
-        count = 0
         for city in self.cities:
             countries.append(city.country)
         unique_country = list(set(countries))
@@ -141,7 +140,7 @@ class CityCollection:
 
         fig = plt.figure(figsize=(12, 8))
         plt.bar(countries, values)
-        plt.ylabel('Total emissions(kg CO2)')
+        plt.ylabel('Total emissions(kgs CO2)')
         plt.title('Total emission from each country')
         plt.xticks(rotation=-15)
         plt.tick_params(axis='x', labelsize=8)

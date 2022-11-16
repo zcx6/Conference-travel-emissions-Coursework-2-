@@ -20,7 +20,7 @@ class TestCity:
             zurich = City('Zurich', 'Switzerland', -8, 47.22, 8.33)
 
     def test_latitude_is_not_decimal(self):
-        with raises(ValueError) as exception:
+        with raises(TypeError) as exception:
             zurich = City('Zurich', 'Switzerland', 52, 'll', 8.33)
 
     def test_latitude_is_invalid(self):
@@ -28,7 +28,7 @@ class TestCity:
             zurich = City('Zurich', 'Switzerland', 52, 100, 8.33)
 
     def test_longitude_is_not_decimal(self):
-        with raises(ValueError) as exception:
+        with raises(TypeError) as exception:
             zurich = City('Zurich', 'Switzerland', 52, 47.22, 'mj')
 
     def test_longitude_is_invalid(self):
@@ -65,7 +65,7 @@ class TestCity:
         seoul = City('Seoul', 'South Korea', 234, 37.57, 126.98)
         kan_to_seo_co2 = kanazawa.co2_to(seoul)
         d = kanazawa.distance_to(seoul)
-        assert kan_to_seo_co2 == 200 * d * kanazawa.citizen_numbers
+        assert kan_to_seo_co2 == 200*d*kanazawa.citizen_numbers
 
 
 
@@ -131,8 +131,9 @@ class TestCityCollection:
         tokai = City('Tokai', 'Japan', 1, 35.04, 136.91)
         city_collection = CityCollection([kanazawa, seoul, san_francisco, tokai])
         sorted_by_emission = city_collection.sorted_by_emissions()
-        list = [('Seoul', 194246708.24714386), ('Kanazawa', 220202273.68952188), ('Tokai', 225417772.99128708), ('San Francisco', 661729554.8444115)]
-        assert sorted_by_emission == list
+        list = [('Seoul', city_collection.total_co2(seoul)), ('Kanazawa', city_collection.total_co2(kanazawa)), ('Tokai', city_collection.total_co2(tokai)), ('San Francisco', city_collection.total_co2(san_francisco))]
+        list_emissions = sorted(list, key=lambda t: t[1])
+        assert sorted_by_emission == list_emissions
 
 
 
