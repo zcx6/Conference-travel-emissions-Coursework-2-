@@ -3,6 +3,13 @@ import math
 
 class City:
     def __init__(self, name, country, citizen_numbers, latitude, longitude):
+        def is_number(n):
+            try:
+                n = eval(n)
+                if type(n) == int or type(n) == float:
+                    return True
+            except Exception as e:
+                raise ValueError('The latitude or longitude is not decimal number')
 
         if name == '' or not isinstance(name, str):
             raise TypeError('name is not string')
@@ -12,13 +19,12 @@ class City:
             raise TypeError('citizen_numbers is not integer ')
         if not int(citizen_numbers) >= 0:
             raise ValueError('citizen_numbers is not positive')
-
-        if not isinstance(latitude, float):
-            raise TypeError('latitude is not decimal numbers')
+        if not is_number(str(latitude)):
+            pass
         if not (-90 <= float(latitude) <= 90):
             raise ValueError('latitude is not restricted to the -90 to 90')
-        if not isinstance(longitude, float):
-            raise TypeError('longitude is not decimal numbers')
+        if not is_number(str(longitude)):
+            pass
         if not (-180 <= float(longitude) <= 180):
             raise ValueError('longitude is not restricted to the -180 to 180')
 
